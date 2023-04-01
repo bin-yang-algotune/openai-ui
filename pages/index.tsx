@@ -20,17 +20,16 @@ export default function Home() {
 
     setMessages(updatedMessages);
     setLoading(true);
-
-    const response = await fetch("/api/chat", {
+    console.log(updatedMessages);
+    const response = await fetch("https://openai-wb-demo.herokuapp.com/ask", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
       },
-      body: JSON.stringify({
-        messages: updatedMessages
-      })
+      body: JSON.stringify(message)
     });
-
+    console.log(response);
     if (!response.ok) {
       setLoading(false);
       throw new Error(response.statusText);
@@ -80,7 +79,7 @@ export default function Home() {
     setMessages([
       {
         role: "assistant",
-        content: `Hi there! I'm Chatbot UI, an AI assistant. I can help you with things like answering questions, providing information, and helping with tasks. How can I help you?`
+        content: `Hi there! This is Warren Buffett from the future, How can I help you?`
       }
     ]);
   };
@@ -93,7 +92,7 @@ export default function Home() {
     setMessages([
       {
         role: "assistant",
-        content: `Hi there! I'm Chatbot UI, an AI assistant. I can help you with things like answering questions, providing information, and helping with tasks. How can I help you?`
+        content: `Hi there! This is Warren Buffett from the future, How can I help you?`
       }
     ]);
   }, []);
@@ -101,10 +100,10 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Chatbot UI</title>
+        <title>ChatGPT Warren Buffett</title>
         <meta
           name="description"
-          content="A simple chatbot starter kit for OpenAI's chat model using Next.js, TypeScript, and Tailwind CSS."
+          content="Warren Buffett Is Here!"
         />
         <meta
           name="viewport"
