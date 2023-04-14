@@ -21,7 +21,7 @@ export default function Home() {
     setMessages(updatedMessages);
     setLoading(true);
     console.log(updatedMessages);
-    const response = await fetch("https://openai-wb-demo.herokuapp.com/ask", {
+    const response = await fetch("https://openai-wb-demo.herokuapp.com/chat", {
       method: "POST",
       headers: {
         'Accept': 'application/json',
