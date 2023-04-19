@@ -20,22 +20,21 @@ export default function Home() {
 
     setMessages(updatedMessages);
     setLoading(true);
-    console.log(updatedMessages);
-    const response = await fetch("https://openai-wb-demo.herokuapp.com/chat", {
+    const response = await fetch("https://openai-wb-demo.herokuapp.com/chat_all", {
       method: "POST",
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(message)
+      body: JSON.stringify(updatedMessages)
     });
-    console.log(response);
     if (!response.ok) {
       setLoading(false);
       throw new Error(response.statusText);
     }
-
     const data = response.body;
+
+    console.log(data)
 
     if (!data) {
       return;
@@ -53,6 +52,10 @@ export default function Home() {
       done = doneReading;
       const chunkValue = decoder.decode(value);
 
+      // const chunkValueFixed = chunkValue.replace(/'/g, '');
+      // console.log(chunkValueFixed);
+      // const respJsonObj = JSON.parse(chunkValueFixed);
+
       if (isFirst) {
         isFirst = false;
         setMessages((messages) => [
@@ -67,7 +70,8 @@ export default function Home() {
           const lastMessage = messages[messages.length - 1];
           const updatedMessage = {
             ...lastMessage,
-            content: lastMessage.content + chunkValue
+            content: lastMessage.content + chunkValue,
+            // reference: respJsonObj["reference"]
           };
           return [...messages.slice(0, -1), updatedMessage];
         });
