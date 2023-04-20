@@ -20,8 +20,8 @@ export default function Home() {
 
         setMessages(updatedMessages);
         setLoading(true);
-        // const url = "https://openai-wb-demo.herokuapp.com/chat_all";
-        const url = "http://127.0.0.1:5000/chat_all";
+        const url = "https://openai-wb-demo.herokuapp.com/chat_all";
+        // const url = "http://127.0.0.1:5000/chat_all";
         const response = await fetch(url, {
             method: "POST",
             headers: {
