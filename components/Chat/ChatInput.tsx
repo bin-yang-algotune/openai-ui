@@ -26,7 +26,7 @@ export const ChatInput: FC<Props> = ({ onSend }) => {
       alert("Please enter a message");
       return;
     }
-    onSend({ role: "user", content });
+    onSend({ role: "user", content, reference:""});
     setContent("");
   };
 
